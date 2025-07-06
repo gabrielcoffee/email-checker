@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import PyPDF2
 import io
-import check_email_text from gemma
+from gemma import check_email_text
 
 # cria api flask
 app = Flask(__name__)
@@ -13,6 +13,8 @@ CORS(app)
 def receive_text():
     data = request.get_json()
     text = data.get('text', '')
+
+    print('text: ' + text)
 
     response = check_email_text(text)
     return jsonify({'text': response})
@@ -32,13 +34,14 @@ def receive_file():
         else:
             content = file.read().decode('utf-8')
 
+        print('content: ' + content)
         response = check_email_text(content)
         return jsonify({'text': response})
     except:
         print("Error: could not read file" + filename)
-        return jsonify({'text': 'Erro'})
+        return jsonify({'text': 'Erro ao ler arquivo'})
 
 # Rodar a aplicação
 if __name__ == '__main__':
-    print("API rodando em: http://localhost:5000")
-    app.run(host='0.0.0.0', port=5000)
+    print("API rodando em: http://localhost:5001")
+    app.run(debug=True, host='0.0.0.0', port=5001)
