@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Checker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">email-checker</h1>
+        
+        <div class="upload-area" id="uploadArea">
+            <div class="upload-icon">
+                <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 16L12 8M12 8L15 11M12 8L9 11" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M3 15V16C3 18.8284 3 20.2426 3.87868 21.1213C4.75736 22 6.17157 22 9 22H15C17.8284 22 19.2426 22 20.1213 21.1213C21 20.2426 21 18.8284 21 16V15" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <div class="upload-text">Envie seu arquivo .txt ou .pdf</div>
+            <div class="upload-hint">Arraste e solte ou clique para escolher</div>
+            <input type="file" id="fileInput" class="file-input" accept=".txt,.pdf">
+        </div>
+        
+        <div class="file-info" id="fileInfo"></div>
+        
+        <button class="submit-btn" id="submitBtn" disabled>Enviar</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
