@@ -17,7 +17,7 @@ body {
 
 .container {
     text-align: center;
-    max-width: 500px;
+    max-width: 800px;
     width: 90%;
     padding: 40px;
 }
@@ -30,15 +30,26 @@ body {
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
+.input-section {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 25px;
+    align-items: stretch;
+}
+
 .upload-area {
     border: 3px dashed rgba(255, 255, 255, 0.5);
     border-radius: 15px;
     padding: 40px 20px;
-    margin-bottom: 25px;
     cursor: pointer;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
     transition: all 0.3s ease;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 200px;
 }
 
 .upload-area:hover {
@@ -49,6 +60,41 @@ body {
 .upload-area.dragover {
     border-color: #22c55e;
     background: rgba(34, 197, 94, 0.1);
+}
+
+.text-input-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+#textInput {
+    width: 100%;
+    height: 100%;
+    min-height: 200px;
+    padding: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    color: #ffffff;
+    font-size: 1rem;
+    font-family: inherit;
+    resize: vertical;
+    transition: all 0.3s ease;
+    box-shadow: 
+        inset 0 0 4px rgba(255, 255, 255, 0.15),
+        0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+#textInput:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+#textInput::placeholder {
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .upload-icon {
@@ -120,7 +166,12 @@ body {
         0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
+    .input-section {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
     .container {
         padding: 30px 20px;
     }
@@ -131,5 +182,10 @@ body {
     
     .upload-area {
         padding: 30px 15px;
+        min-height: 150px;
+    }
+    
+    #textInput {
+        min-height: 150px;
     }
 } 

@@ -8,7 +8,7 @@ echo "================================"
 
 # Test 1: Text endpoint with productive content
 echo "📝 Teste 1: Testando endpoint /text com conteúdo produtivo"
-curl -X POST http://localhost:5001/text \
+curl -X POST https://email-checker-cbmy.onrender.com/text \
   -H "Content-Type: application/json" \
   -d '{"text": "Reunião agendada para amanhã às 14h para discutir o progresso do projeto e próximos passos."}' \
   | jq '.'
@@ -17,7 +17,7 @@ echo -e "\n"
 
 # Test 2: Text endpoint with unproductive content
 echo "📝 Teste 2: Testando endpoint /text com conteúdo improdutivo"
-curl -X POST http://localhost:5001/text \
+curl -X POST https://email-checker-cbmy.onrender.com/text \
   -H "Content-Type: application/json" \
   -d '{"text": "Só navegando nas redes sociais e assistindo vídeos engraçados de gatos."}' \
   | jq '.'

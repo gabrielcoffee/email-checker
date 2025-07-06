@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 import PyPDF2
 import io
@@ -7,6 +7,11 @@ from gemma import check_email_text
 # cria api flask
 app = Flask(__name__)
 CORS(app)
+
+# Rota para a página inicial
+@app.route('/', methods=['GET'])
+def index():
+    return render_template('index.html')
 
 # Rota para receber texto e retornar uma resposta
 @app.route('/text', methods=['POST'])
@@ -43,5 +48,4 @@ def receive_file():
 
 # Rodar a aplicação
 if __name__ == '__main__':
-    print("API rodando em: http://localhost:5001")
     app.run(host='0.0.0.0', port=5001)
