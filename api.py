@@ -19,10 +19,6 @@ def index():
         print(f"Erro ao renderizar template: {e}")
         return f"Erro: {e}", 500
 
-# Rota de health check para o Render
-@app.route('/health', methods=['GET'])
-def health_check():
-    return jsonify({'status': 'healthy', 'message': 'API funcionando!'})
 
 # Rota para receber texto e retornar uma resposta
 @app.route('/text', methods=['POST'])
