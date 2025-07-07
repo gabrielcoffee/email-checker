@@ -49,6 +49,7 @@ function handleFiles(files) {
         const fileName = validFiles[0].name;
         fileInfo.textContent = `Arquivo selecionado: ${fileName}`;
         fileInfo.style.display = 'block';
+        fileInfo.className = 'file-info';
     } else {
         alert('Por favor, selecione apenas arquivos .txt ou .pdf');
         selectedFiles = [];
@@ -83,6 +84,9 @@ async function submitFile() {
     try {
         submitBtn.disabled = true;
         submitBtn.textContent = 'Enviando...';
+        fileInfo.textContent = 'Processando arquivo...';
+        fileInfo.style.display = 'block';
+        fileInfo.className = 'file-info processing';
         
         const response = await fetch('/file', {
             method: 'POST',
@@ -92,13 +96,18 @@ async function submitFile() {
         const result = await response.json();
         
         if (response.ok) {
-            alert(`Classificação: ${result.text}`);
+            const classification = result.text;
+            const fileName = selectedFiles[0].name;
+            fileInfo.textContent = `Arquivo: ${fileName} | Classificação: ${classification}`;
+            fileInfo.className = `file-info ${classification.toLowerCase()}`;
         } else {
-            alert('Erro ao processar arquivo');
+            fileInfo.textContent = 'Erro ao processar arquivo';
+            fileInfo.className = 'file-info error';
         }
     } catch (error) {
         console.error('Error:', error);
-        alert('Erro ao enviar arquivo');
+        fileInfo.textContent = 'Erro ao enviar arquivo';
+        fileInfo.className = 'file-info error';
     } finally {
         submitBtn.disabled = false;
         submitBtn.textContent = 'Enviar';
@@ -111,6 +120,9 @@ async function submitText() {
     try {
         submitBtn.disabled = true;
         submitBtn.textContent = 'Enviando...';
+        fileInfo.textContent = 'Processando texto...';
+        fileInfo.style.display = 'block';
+        fileInfo.className = 'file-info processing';
         
         const response = await fetch('/text', {
             method: 'POST',
@@ -123,13 +135,17 @@ async function submitText() {
         const result = await response.json();
         
         if (response.ok) {
-            alert(`Classificação: ${result.text}`);
+            const classification = result.text;
+            fileInfo.textContent = `Classificação: ${classification}`;
+            fileInfo.className = `file-info ${classification.toLowerCase()}`;
         } else {
-            alert('Erro ao processar texto');
+            fileInfo.textContent = 'Erro ao processar texto';
+            fileInfo.className = 'file-info error';
         }
     } catch (error) {
         console.error('Error:', error);
-        alert('Erro ao enviar texto');
+        fileInfo.textContent = 'Erro ao enviar texto';
+        fileInfo.className = 'file-info error';
     } finally {
         submitBtn.disabled = false;
         submitBtn.textContent = 'Enviar';

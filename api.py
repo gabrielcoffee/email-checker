@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 import PyPDF2
 import io
+import os
 from gemma import check_email_text
 
 # cria api flask
@@ -11,7 +12,17 @@ CORS(app)
 # Rota para a página inicial
 @app.route('/', methods=['GET'])
 def index():
-    return render_template('index.html')
+    print("Acessando rota /")
+    try:
+        return render_template('index.html')
+    except Exception as e:
+        print(f"Erro ao renderizar template: {e}")
+        return f"Erro: {e}", 500
+
+# Rota de health check para o Render
+@app.route('/health', methods=['GET'])
+def health_check():
+    return jsonify({'status': 'healthy', 'message': 'API funcionando!'})
 
 # Rota para receber texto e retornar uma resposta
 @app.route('/text', methods=['POST'])
@@ -48,4 +59,5 @@ def receive_file():
 
 # Rodar a aplicação
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5001)
+    port = int(os.environ.get('PORT', 5001))
+    app.run(host='0.0.0.0', port=port)
