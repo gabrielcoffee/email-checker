@@ -1,12 +1,12 @@
 # Email Checker
 
-Classifica emails como produtivos ou improdutivos usando IA.
+Classifica emails ou textos de email como produtivos ou improdutivos usando IA.
 
 ## Instalação
 
 1. **Clone o repositório:**
 ```bash
-git clone <seu-repositorio>
+git clone https://github.com/gabrielcoffee/email-checker
 cd email-checker-service
 ```
 
